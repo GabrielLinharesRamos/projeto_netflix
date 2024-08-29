@@ -1,0 +1,12 @@
+
+{% block content %}
+
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button name="submit">entrar</button>
+
+    <input type="hidden" name="next" value="{% url 'index' %}">
+</form>
+
+{% endblock content %}

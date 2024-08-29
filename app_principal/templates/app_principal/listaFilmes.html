@@ -1,0 +1,28 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/listaFilmes.css' %}">
+</head>
+
+
+{% block content %}
+
+<body>
+    <header>
+        <h1>netflix</h1>
+        <div>
+            <h3><a href="{% url 'login' %}">Entrar</a></h3>
+            <h3 style="color: black;">|</h3>
+            <h3><a href="{% url 'index' %}">adicionar filmes</a></h3>
+        </div>
+    </header>
+    <h1 class="page-title">Filmes registrados</h1>
+    <div style="display: flex; flex-wrap: wrap;">
+        {% for movie in movies %}
+            <a style="background-image: url('{{ movie.url }}')" class="movie-item" href="{% url 'descricaoFilme' movie.id %}">
+            </a>
+        {% endfor %}
+    </div>
+</body>
+</html>
+
+{% endblock content %}

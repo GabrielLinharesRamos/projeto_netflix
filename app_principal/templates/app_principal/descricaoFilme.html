@@ -1,0 +1,29 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/descricaoFilmes.css' %}">
+</head>
+
+{% block content %}
+
+
+
+<body>
+    <header>
+        <h1>netflix</h1>
+        <div class="header-links">
+            <h3><a href="{% url 'login' %}">Entrar</a></h3>
+            <h3>|</h3>
+            <h3><a href="{% url 'listaFilmes' %}">catálogo</a></h3>
+        </div>
+    </header>
+
+    <div class="movie-details">
+        <h1>{{movie.title}}</h1>
+        <span>{{movie.description}}</span>
+        <form action="{% url 'deletaFilme' movie.id %}" method="post">
+            {% csrf_token %}
+            <button name="submit">deletar</button>
+        </form>
+    </div>
+</body>
+{% endblock content %}

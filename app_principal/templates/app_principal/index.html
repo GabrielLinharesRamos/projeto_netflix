@@ -1,0 +1,41 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+{% block content %}
+
+<body>
+    <header>
+        <h1>netflix</h1>
+        <div>
+            <h3><a href="{% url 'login' %}">Entrar</a></h3>
+            <h3>|</h3>
+            <h3><a href="{% url 'listaFilmes' %}">catálogo</a></h3>
+        </div>
+    </header>
+
+    <form action="{% url 'index' %}" method="post">
+        <h2>Cadastrar filme</h2>
+
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.title.label_tag }}
+            {{ form.title }}
+        </div>
+
+        <div class="form-group">
+            {{ form.url.label_tag }}
+            {{ form.url }}
+        </div>
+
+        <div>
+            <div style="padding: 13px;">
+                {{ form.description }}
+            </div>
+        </div>
+
+        <button name="submit">Enviar ao banco</button>
+    </form>
+</body>
+{% endblock content %}

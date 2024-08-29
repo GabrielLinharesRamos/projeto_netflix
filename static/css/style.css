@@ -1,0 +1,95 @@
+body {
+    overflow: hidden;
+    background-position: bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('https://c1.wallpaperflare.com/preview/570/413/91/interior-theatre-theater-empty-theater.jpg');
+    padding: 0;
+    margin: 0;
+    background-color: black;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, black, red);
+    height: 50px;
+    border-bottom: 1px solid red;
+}
+
+header h1 {
+    color: red;
+    margin-left: 15px;
+    line-height: 50px;
+}
+
+header div {
+    display: flex;
+    gap: 20px;
+}
+
+header a {
+    color: black;
+    text-decoration: none;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+form {
+    opacity: 0.9;
+    font-size: 20px;
+    text-align: center;
+    padding: 30px;
+    background-color: rgb(26, 24, 24);
+    width: 600px;
+    margin: 80px auto 30px auto;
+    border-radius: 13px;
+    color: white;
+}
+
+form h2 {
+    color: red;
+}
+
+form div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form div > div {
+    margin-right: 20px;
+}
+
+form div > div:last-child {
+    margin-left: 20px;
+}
+
+form .description-wrapper {
+    margin-top: 20px;
+}
+
+form .description-wrapper div {
+    padding: 13px;
+}
+
+button {
+    border: 1px solid red;
+    color: red;
+    font-size: 15px;
+    margin-top: 25px;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: black;
+    cursor: pointer;
+}
+
