@@ -1,12 +1,14 @@
 body {
+    background-color: #121212;
+    color: white;
+    margin: 0;
+    font-family: Arial, sans-serif;
     overflow: hidden;
     background-position: bottom;
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url('https://c1.wallpaperflare.com/preview/570/413/91/interior-theatre-theater-empty-theater.jpg');
-    padding: 0;
-    margin: 0;
-    background-color: black;
+    
 }
 
 header {
@@ -15,59 +17,79 @@ header {
     left: 0;
     width: 100%;
     box-sizing: border-box;
-    padding: 0 15px;
+    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to right, black, red);
-    height: 50px;
-    border-bottom: 1px solid red;
+    background: linear-gradient(to right, #000, #e50914);
+    height: 60px;
+    border-bottom: 1px solid #e50914;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
 }
-
 
 header h1 {
-    color: red;
-    margin-left: 15px;
-    line-height: 50px;
+    color: #e50914;
+    margin: 0;
+    font-size: 24px;
 }
 
-.header-links {
+header div {
     display: flex;
+    align-items: center;
     gap: 20px;
 }
 
-.header-links h3 {
-    margin: 0;
-}
-
-.header-links a {
-    color: black;
+header a {
+    color: #e5e5e5;
     text-decoration: none;
+    font-size: 16px;
 }
 
-.header-links a:hover {
+header a:hover {
     text-decoration: underline;
 }
 
+
+
 .movie-details {
-    opacity: 0.9;
-    font-size: 20px;
+    opacity: 0.95;
+    font-size: 18px;
     text-align: center;
-    padding: 30px;
-    background-color: rgb(26, 24, 24);
-    width: 600px;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 80%;
+    max-width: 800px;
     margin: 80px auto 30px auto;
-    border-radius: 13px;
+    border-radius: 15px;
     color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
 }
 
-button{
-    border: 1px solid red;
-    color: red;
-    font-size: 15px;
-    margin-top: 25px;
-    padding: 10px;
-    border-radius: 15px;
+.movie-details h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.movie-details span {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+button {
+    border: 2px solid #e50914;
+    color: #e50914;
+    font-size: 16px;
+    padding: 12px 20px;
+    border-radius: 25px;
     background-color: black;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #e50914;
+    color: black;
 }

@@ -1,5 +1,9 @@
 {% load static %}
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Filmes Registrados</title>
+    {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/listaFilmes.css' %}">
 </head>
 
@@ -15,13 +19,16 @@
             <h3><a href="{% url 'index' %}">adicionar filmes</a></h3>
         </div>
     </header>
-    <h1 class="page-title">Filmes registrados</h1>
-    <div style="display: flex; flex-wrap: wrap;">
-        {% for movie in movies %}
-            <a style="background-image: url('{{ movie.url }}')" class="movie-item" href="{% url 'descricaoFilme' movie.id %}">
-            </a>
-        {% endfor %}
-    </div>
+    <main>
+        <h1 class="page-title">Filmes Registrados</h1>
+        <div class="movie-grid">
+            {% for movie in movies %}
+                <a style="background-image: url('{{ movie.url }}')" class="movie-item" href="{% url 'descricaoFilme' movie.id %}">
+                    <div class="overlay"></div>
+                </a>
+            {% endfor %}
+        </div>
+    </main>
 </body>
 </html>
 

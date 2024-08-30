@@ -1,12 +1,14 @@
 body {
+    background-color: #121212;
+    color: white;
+    margin: 0;
+    font-family: Arial, sans-serif;
     overflow: hidden;
     background-position: bottom;
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url('https://c1.wallpaperflare.com/preview/570/413/91/interior-theatre-theater-empty-theater.jpg');
-    padding: 0;
-    margin: 0;
-    background-color: black;
+    
 }
 
 header {
@@ -15,81 +17,92 @@ header {
     left: 0;
     width: 100%;
     box-sizing: border-box;
-    padding: 0 15px;
+    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to right, black, red);
-    height: 50px;
-    border-bottom: 1px solid red;
+    background: linear-gradient(to right, #000, #e50914);
+    height: 60px;
+    border-bottom: 1px solid #e50914;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
 }
 
 header h1 {
-    color: red;
-    margin-left: 15px;
-    line-height: 50px;
+    color: #e50914;
+    margin: 0;
+    font-size: 24px;
 }
 
 header div {
     display: flex;
+    align-items: center;
     gap: 20px;
 }
 
 header a {
-    color: black;
+    color: #e5e5e5;
     text-decoration: none;
+    font-size: 16px;
 }
 
 header a:hover {
     text-decoration: underline;
 }
 
+main {
+    padding-top: 80px;
+    display: flex;
+    justify-content: center;
+}
+
 form {
     opacity: 0.9;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     padding: 30px;
-    background-color: rgb(26, 24, 24);
-    width: 600px;
-    margin: 80px auto 30px auto;
-    border-radius: 13px;
+    background-color: rgba(26, 24, 24, 0.8);
+    width: 500px;
+    border-radius: 15px;
     color: white;
 }
 
 form h2 {
-    color: red;
+    color: #e50914;
+    margin-bottom: 20px;
 }
 
-form div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.form-group {
+    margin-bottom: 15px;
 }
 
-form div > div {
-    margin-right: 20px;
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-form div > div:last-child {
-    margin-left: 20px;
-}
-
-form .description-wrapper {
-    margin-top: 20px;
-}
-
-form .description-wrapper div {
-    padding: 13px;
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #333;
+    color: white;
 }
 
 button {
-    border: 1px solid red;
-    color: red;
-    font-size: 15px;
-    margin-top: 25px;
-    padding: 10px;
-    border-radius: 15px;
+    border: 1px solid #e50914;
+    color: #e50914;
+    font-size: 16px;
+    padding: 12px 20px;
+    border-radius: 5px;
     background-color: black;
     cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
+button:hover {
+    background-color: #e50914;
+    color: black;
+}
