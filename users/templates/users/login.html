@@ -1,12 +1,28 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+</head>
+
 
 {% block content %}
 
-<form action="{% url 'login' %}" method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button name="submit">entrar</button>
+<header>
+    <h1>netflix</h1>
+    <div>
+        <h3><a href="{% url 'login' %}">Entrar</a></h3>
+        <h3 style="color: black;">|</h3>
+        <h3><a href="{% url 'listaFilmes' %}">catálogo</a></h3>
+    </div>
+</header>
 
-    <input type="hidden" name="next" value="{% url 'index' %}">
-</form>
+<main>
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button name="submit">entrar</button>
+
+        <input type="hidden" name="next" value="{% url 'index' %}">
+    </form>
+</main>
 
 {% endblock content %}

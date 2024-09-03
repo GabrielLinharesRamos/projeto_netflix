@@ -20,6 +20,24 @@
         </div>
     </header>
     <main>
+
+        {% if user.is_authenticated %}
+            <h1 class="page-title">Meus Filmes</h1>
+            <div class="movie-grid">
+                {% for movie in movies_user %}
+                <a style="background-image: url('{{ movie.url }}')" class="movie-item" href="{% url 'descricaoFilme' movie.id %}">
+                    <div class="overlay"></div>
+                </a>
+                {% empty %}
+                    <p>Você ainda não tem filmes na sua lista.</p>
+                {% endfor %}
+            </div>
+        {% else %}
+            <h1 class="page-title">Meus Filmes</h1>
+            <p>Você precisa estar logado para ver a seção "Meus Filmes".</p>
+        {% endif %}
+
+
         <h1 class="page-title">Filmes Registrados</h1>
         <div class="movie-grid">
             {% for movie in movies %}
