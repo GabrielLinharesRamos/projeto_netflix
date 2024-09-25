@@ -1,6 +1,5 @@
 {% load static %}
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             background-color: #121212;
@@ -11,8 +10,8 @@
             background-position: bottom;
             background-size: cover;
             background-repeat: no-repeat;
-            background-image: url('https://c1.wallpaperflare.com/preview/570/413/91/interior-theatre-theater-empty-theater.jpg');
-            font-family: 'Roboto', Arial, sans-serif;
+            background-image: url("{% static 'img/375459.jpg' %}"); 
+            
         }
 
         header {
@@ -54,58 +53,67 @@
             text-decoration: underline;
         }
 
+        main {
+            padding-top: 80px;
+            display: flex;
+            justify-content: center;
+        }
 
-
-        .movie-details {
+        form {
             opacity: 0.95;
             font-size: 18px;
             text-align: center;
-            padding: 40px;
-            background-color: rgba(0, 0, 0, 0.7);
-            width: 80%;
-            max-width: 800px;
-            margin: 80px auto 30px auto;
+            padding: 30px;
+            background-color: rgba(26, 24, 24, 0.8);
+            width: 500px;
             border-radius: 15px;
             color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
         }
 
-        .movie-details h1 {
-            font-size: 36px;
+        form h2 {
+            color: #e50914;
             margin-bottom: 20px;
         }
 
-        .movie-details span {
-            display: block;
-            font-size: 18px;
-            margin-bottom: 30px;
-            line-height: 1.8; /* Aumenta o espaçamento entre linhas para melhor leitura */
-            text-align: justify; /* Alinha o texto de forma justificada para uma aparência mais organizada */
-            font-family: 'Roboto', Arial, sans-serif;
+        .form-group {
+            margin-bottom: 15px;
         }
 
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #333;
+            color: white;
+        }
 
         button {
-            border: 2px solid #e50914;
+            border: 1px solid #e50914;
             color: #e50914;
             font-size: 16px;
             padding: 12px 20px;
-            border-radius: 25px;
+            border-radius: 5px;
             background-color: black;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         button:hover {
             background-color: #e50914;
             color: black;
         }
+
     </style>
 </head>
 
 {% block content %}
-
-
 
 <body>
     <header>
@@ -117,18 +125,26 @@
         </div>
     </header>
 
-    <div class="movie-details">
-        <h1>{{movie.title}}</h1>
-        <span>{{movie.description}}</span>
-        <form action="{% url 'deletaFilme' movie.id %}" method="post">
+    <main>
+        <form action="{% url 'index' %}" method="post">
+            <h2>Cadastrar Filme</h2>
             {% csrf_token %}
-            <button name="submit">deletar</button>
-        </form>
+            <div class="form-group">
+                {{ form.title.label_tag }}
+                {{ form.title }}
+            </div>
 
-        <form action="{% url 'adicionaUser' movie.id %}" method="post">
-            {% csrf_token %}
-            <button name="submit">adicionar a lista</button>
+            <div class="form-group">
+                {{ form.url.label_tag }}
+                {{ form.url }}
+            </div>
+
+            <div class="form-group">
+                {{ form.description }}
+            </div>
+
+            <button type="submit">Enviar ao banco</button>
         </form>
-    </div>
+    </main>
 </body>
 {% endblock content %}

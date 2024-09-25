@@ -6,6 +6,11 @@ from .models import Movie,UserMovieList
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+def home(request):        
+    return render(request,'app_principal/home.html')
+
+
+
 def index(request):
 
     if request.method !='POST':
@@ -18,7 +23,7 @@ def index(request):
             return HttpResponseRedirect(reverse('listaFilmes'))
             
     context={'form':form}
-    return render(request,'app_principal/index.html',context)
+    return render(request,'app_principal/cadastro.html',context)
 
 def listaFilmes(request):
         movie=Movie.objects.order_by('date_added')
