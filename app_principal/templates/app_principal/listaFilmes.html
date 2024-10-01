@@ -6,16 +6,11 @@
     {% load static %}
     <style>
         body {
-            background-color: #121212;
+            background-color: black;
             color: white;
             margin: 0;
             font-family: Arial, sans-serif;
-            overflow-x: hidden; /* Evita scroll horizontal */
-            background-position: center; /* Posiciona a imagem no centro */
-            background-size: cover; /* Faz com que a imagem cubra o elemento */
-            background-repeat: no-repeat; /* Evita repetição da imagem */
-            background-attachment: fixed; /* Faz com que a imagem de fundo fique fixa na tela */
-            background-image: url('https://c1.wallpaperflare.com/preview/570/413/91/interior-theatre-theater-empty-theater.jpg');
+            overflow-x: hidden; 
         }
 
         html, body {
@@ -33,7 +28,7 @@
             justify-content: space-between;
             align-items: center;
             background: linear-gradient(to right, #000, #e50914);
-            height: 60px;
+            height: 10vh;
             border-bottom: 1px solid #e50914;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
             z-index: 1000;
@@ -62,8 +57,8 @@
         }
 
         main {
-            margin-top: 30px; /* Para não ficar escondido atrás do header */
-            padding: 20px;
+            margin-top: 10vh; /* Para não ficar escondido atrás do header */
+            padding: 2vh 0vh 3vh 3vh;
         }
 
         h1.page-title {
@@ -73,9 +68,15 @@
 
         .movie-grid {
             display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
+            gap: 35px;
+            width: 98%;
+            overflow-x: auto; /* Permite rolagem horizontal */
+            white-space: nowrap; 
+            padding: 10px;
+        }
+
+        .movie-grid::-webkit-scrollbar {
+            display: none;
         }
 
         .movie-item {
@@ -83,31 +84,72 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            height: 200px;
-            width: 150px;
+            height: 71vh;
             position: relative;
             border-radius: 8px;
             overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition:width 0.3s ease, transform 0.3s ease;
+            border: 1px solid #ccc;
+            display: flex;
+            min-width: 52vh;
+            max-width: 52vh;
         }
 
         .movie-item:hover {
             transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            min-width: 100vh;
+            max-width: 100vh;
+        }
+
+        .movie-item:hover .overlay{
+            height: 100%;
+            width: 45.28%;
+        }
+
+        .movie-item:hover .card{
+            height: 100%;
+            width: 54.72%;
+            display: flex;
+            flex-direction: column;
         }
 
         .movie-item .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.3);
-            transition: opacity 0.3s;
+            overflow: hidden;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            z-index: 1;
         }
 
-        .movie-item:hover .overlay {
-            opacity: 0.5;
+        .card{
+            display: none;
+            z-index: 0;
+        }
+
+        .movie-title{
+            margin: 15px auto;
+        }
+
+        .description{
+            font-size: 14px;
+            padding: 0px 4px;
+        }
+
+        .page-title{
+            height: 5vh;
+        }
+
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 200%;
+            top: 0;
+            left: 0;
+            z-index: -2; /* Fica atrás de todo o conteúdo */
         }
 
     </style>
@@ -117,10 +159,15 @@
 {% block content %}
 
 <body>
+    <div id="particles-js"></div>
     <header>
         <h1>netflix</h1>
         <div>
+            {% if user.is_authenticated %}
+            <h3><a href="{% url 'logout' %}">Sair</a></h3>
+            {% else %}
             <h3><a href="{% url 'login' %}">Entrar</a></h3>
+            {% endif %}
             <h3 style="color: black;">|</h3>
             <h3><a href="{% url 'index' %}">adicionar filmes</a></h3>
         </div>
@@ -131,8 +178,14 @@
             <h1 class="page-title">Meus Filmes</h1>
             <div class="movie-grid">
                 {% for movie in movies_user %}
-                <a style="background-image: url('{{ movie.url }}')" class="movie-item" href="{% url 'descricaoFilme' movie.id %}">
-                    <div class="overlay"></div>
+                <a class="movie-item" href="{% url 'descricaoFilme' movie.id %}">
+                    <div style="background-image: url('{{ movie.url }}');" class="overlay"></div>
+
+                    <div class="card">
+                        <h4 class="movie-title">{{movie.title}}</h4>
+                        <hr>
+                        <span class="description">{{movie.description}}</span>
+                    </div>
                 </a>
                 {% empty %}
                     <p>Você ainda não tem filmes na sua lista.</p>
@@ -145,13 +198,26 @@
         <h1 class="page-title">Filmes Registrados</h1>
         <div class="movie-grid">
             {% for movie in movies %}
-                <a style="background-image: url('{{ movie.url }}')" class="movie-item" href="{% url 'descricaoFilme' movie.id %}">
-                    <div class="overlay"></div>
+            <div class="movie-item">
+                <a class="movie-item" href="{% url 'descricaoFilme' movie.id %}">
+                    <div style="background-image: url('{{ movie.url }}');" class="overlay"></div>
                 </a>
+            </div>
             {% endfor %}
         </div>
     </main>
+    <script src="{% static 'particulas/particles.js' %}"></script>
+    <script src="{% static 'particulas/app.js' %}"></script>
 </body>
+
+<script>
+    const scrollContainer = document.querySelector('.movie-grid');
+
+    scrollContainer.addEventListener('wheel', (event) => {
+        event.preventDefault(); // Previne a rolagem vertical padrão
+        scrollContainer.scrollLeft += event.deltaY; // Rola horizontalmente
+    });
+</script>
 </html>
 
 {% endblock content %}

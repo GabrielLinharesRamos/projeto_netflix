@@ -111,7 +111,11 @@
     <header>
         <h1>netflix</h1>
         <div>
+            {% if user.is_authenticated %}
+            <h3><a href="{% url 'logout' %}">Sair</a></h3>
+            {% else %}
             <h3><a href="{% url 'login' %}">Entrar</a></h3>
+            {% endif %}
             <h3 style="color: black;">|</h3>
             <h3><a href="{% url 'listaFilmes' %}">catálogo</a></h3>
         </div>
