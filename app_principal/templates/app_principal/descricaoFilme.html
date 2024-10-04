@@ -3,7 +3,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #121212;
+            background-color: #000000;
             color: white;
             margin: 0;
             font-family: Arial, sans-serif;
@@ -11,8 +11,8 @@
             background-position: bottom;
             background-size: cover;
             background-repeat: no-repeat;
-            background-image: url('https://c1.wallpaperflare.com/preview/570/413/91/interior-theatre-theater-empty-theater.jpg');
             font-family: 'Roboto', Arial, sans-serif;
+            background-image: url('https://c1.wallpaperflare.com/preview/570/413/91/interior-theatre-theater-empty-theater.jpg');
         }
 
         header {
@@ -55,37 +55,35 @@
         }
 
 
-
         .movie-details {
             opacity: 0.95;
             font-size: 18px;
             text-align: center;
             padding: 40px;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(30, 30, 30, 0.9);
             width: 80%;
             max-width: 800px;
             margin: 80px auto 30px auto;
-            border-radius: 15px;
+            border-radius: 15px 15px 0 0;
             color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
         }
 
-        .movie-details h1 {
-            font-size: 36px;
+        .movie-details iframe {
+            width: 100%;
+            max-width: 720px;
+            height: 405px;
             margin-bottom: 20px;
+            border-radius: 10px;
+            border: none;
         }
 
-        .movie-details span {
-            display: block;
-            font-size: 18px;
-            margin-bottom: 30px;
-            line-height: 1.8; /* Aumenta o espaçamento entre linhas para melhor leitura */
-            text-align: justify; /* Alinha o texto de forma justificada para uma aparência mais organizada */
-            font-family: 'Roboto', Arial, sans-serif;
+        .movie-details form {
+            display: inline-block;
+            margin: 10px;
         }
 
-
-        button {
+        .movie-details button {
             border: 2px solid #e50914;
             color: #e50914;
             font-size: 16px;
@@ -94,9 +92,10 @@
             background-color: black;
             cursor: pointer;
             transition: all 0.3s ease;
+            width: 200px; 
         }
 
-        button:hover {
+        .movie-details button:hover {
             background-color: #e50914;
             color: black;
         }
@@ -122,16 +121,20 @@
     </header>
 
     <div class="movie-details">
-        <h1>{{movie.title}}</h1>
-        <span>{{movie.description}}</span>
+        <iframe 
+            src="https://www.youtube.com/embed/vHj0Wbvm6BY" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    
         <form action="{% url 'deletaFilme' movie.id %}" method="post">
             {% csrf_token %}
-            <button name="submit">deletar</button>
+            <button name="submit">Deletar</button>
         </form>
-
+    
         <form action="{% url 'adicionaUser' movie.id %}" method="post">
             {% csrf_token %}
-            <button name="submit">adicionar a lista</button>
+            <button name="submit">Adicionar à Lista</button>
         </form>
     </div>
 </body>
